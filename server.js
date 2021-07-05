@@ -9,13 +9,12 @@ function decodeData(req, res, next) {
         data = new Buffer(data, 'base64').toString('ascii')
         req.query[q] = data
     }
-
     next()
 }
 
-app.get('/eval', decryptData, decodeData, (req, res)=>{
+app.get('/eval', decodeData, (req, res)=>{
     let ans = eval(req.query.code);
-    res.send("answer is "+ans)
+    res.send(`The output is \n` + ans)
 })
 
 app.listen(3333, ()=>{
