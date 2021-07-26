@@ -6,7 +6,7 @@ app.use('/', express.static(__dirname + '/public'))
 function decodeData(req, res, next) {
     for (let q in req.query) {
         let data = req.query[q] 
-        data = new Buffer(data, 'base64').toString('ascii')
+        data = Buffer.from(data, 'base64').toString('ascii')
         req.query[q] = data
     }
     next()
