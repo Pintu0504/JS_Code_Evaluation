@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+const PORT = process.env.PORT || 5000
+
 app.use('/', express.static(__dirname + '/public'))
 
 function decodeData(req, res, next) {
@@ -17,7 +19,7 @@ app.get('/eval', decodeData, (req, res)=>{
     res.send(`The output is \n` + ans)
 })
 
-app.listen(3333, ()=>{
-    console.log('Server started on http://localhost:3333')
+app.listen(PORT, ()=>{
+    console.log(`Server started on http://localhost:${PORT}`)
 })
 
